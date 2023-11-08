@@ -1,0 +1,36 @@
+type Livestock = record {
+  id : text;
+  dob : text;
+  sex : text;
+  tagNo : text;
+  coatcolour : text;
+  owner : principal;
+  name : text;
+  createdAt : nat64;
+  marking : text;
+  updatedAt : opt nat64;
+  brand : text;
+  breed : text;
+  species : text;
+};
+type LivestockPayload = record {
+  dob : text;
+  sex : text;
+  tagNo : text;
+  coatcolour : text;
+  name : text;
+  marking : text;
+  brand : text;
+  breed : text;
+  species : text;
+};
+type _AzleResult = variant { Ok : Livestock; Err : text };
+type _AzleResult_1 = variant { Ok : vec Livestock; Err : text };
+service : () -> {
+  CreateLivestock : (LivestockPayload) -> (_AzleResult);
+  deleteLivestock : (text) -> (_AzleResult);
+  getAllLivestock : () -> (_AzleResult_1) query;
+  getLivestockById : (text) -> (_AzleResult) query;
+  getLivestockByName : (text) -> (_AzleResult) query;
+  updatedLivestock : (text, LivestockPayload) -> (_AzleResult);
+}
